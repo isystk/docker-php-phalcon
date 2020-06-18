@@ -37,9 +37,6 @@ Wordpress の自作テンプレートを開発する環境を構築します。
 ## Usage
 
 ```
-# 初期化する
-$ ./dc.sh init
-
 # サーバーを起動する
 $ ./dc.sh start
 
@@ -68,6 +65,29 @@ phpmyadmin でデータベースを管理できます。
 http://localhost:8888/
 
 ## Install
+
+```
+# WSLにphp5系をインストール
+sudo apt-get install software-properties-common python-software-properties
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install php5.6 
+sudo apt-get install php5.6-xml
+sudo apt-get install php5.6-phalcon
+
+
+
+# Dockerイメージを初期化する
+$ ./dc.sh init
+
+# Dockerイメージを作成して起動する
+$ ./dc.sh start
+
+```
 
 ## Contribution
 

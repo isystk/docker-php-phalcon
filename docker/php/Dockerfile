@@ -1,14 +1,16 @@
-FROM php:7.2-fpm
+FROM php:5.5-fpm
 
 MAINTAINER isystk
+ENV PHALCON_VERSION=v1.3.2
 
-ENV PHALCON_VERSION=3.4.2
+RUN docker-php-ext-install pdo_mysql mysqli mbstring
 
-RUN curl -sSL "https://codeload.github.com/phalcon/cphalcon/tar.gz/v${PHALCON_VERSION}" | tar -xz \
-    && cd cphalcon-${PHALCON_VERSION}/build \
+RUN curl -sSL "https://github.com/phalcon/cphalcon/archive/phalcon-${PHALCON_VERSION}.tar.gz" | tar -xz \
+    && cd cphalcon-phalcon-${PHALCON_VERSION}/build \
     && ./install \
-    && cp ../tests/_ci/phalcon.ini $(php-config --configure-options | grep -o "with-config-file-scan-dir=\([^ ]*\)" | awk -F'=' '{print $2}') \
+    && cp ../unit-tests/ci/phalcon.ini $(php-config --configure-options | grep -o "with-config-file-scan-dir=\([^ ]*\)" | awk -F'=' '{print $2}') \
     && cd ../../ \
-    && rm -r cphalcon-${PHALCON_VERSION}
+    && rm -r cphalcon-phalcon-${PHALCON_VERSION}
+
 
 COPY php.ini /usr/local/etc/php/

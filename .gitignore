@@ -5,6 +5,7 @@
 
 # mysql
 docker/mysql/data
+docker/mysql/init
 docker/mysql/logs
 docker/apache/logs
 
